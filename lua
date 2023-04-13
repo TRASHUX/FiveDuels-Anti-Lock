@@ -3676,7 +3676,7 @@ local VylixHub =
 
 -- Tabs
 
-local AntiAim = VylixHub:CreateTab("Anti-Aim")
+local AntiAim = VylixHub:CreateTab("Anti-Lock")
 local Extra = VylixHub:CreateTab("Extra")
 
 -- Sectors
