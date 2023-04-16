@@ -3672,7 +3672,7 @@ function library:CreateWindow(name, size, hidebutton)
 end
 
 local VylixHub =
-	library:CreateWindow("FiveDuels | Azure#3149", Vector2.new(460, 565), Enum.KeyCode.LeftAlt)
+	library:CreateWindow("FiveDuels | TRA$H#3149", Vector2.new(460, 565), Enum.KeyCode.LeftAlt)
 
 -- Tabs
 
