@@ -326,7 +326,7 @@ function library:CreateWindow(name, size, hidebutton)
 	local window = { }
 	window.name = name or ""
 	window.size = UDim2.fromOffset(size.X, size.Y) or UDim2.fromOffset(492, 598)
-	window.hidebutton = hidebutton or Enum.KeyCode.LeftAlt
+	window.hidebutton = hidebutton or Enum.KeyCode.RightShift
 	window.theme = library.theme
 
 	local updateevent = Instance.new("BindableEvent")
@@ -3672,7 +3672,7 @@ function library:CreateWindow(name, size, hidebutton)
 end
 
 local VylixHub =
-	library:CreateWindow("FiveDuels | TRA$H#3149", Vector2.new(460, 565), Enum.KeyCode.LeftAlt)
+	library:CreateWindow("FiveDuels | TRA$H#3149", Vector2.new(460, 565), Enum.KeyCode.RightShift)
 
 -- Tabs
 
