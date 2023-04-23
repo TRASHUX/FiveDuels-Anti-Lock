@@ -1,3 +1,6 @@
+-- Source fully made by Actyrn#7104, except the UI library ofc
+-- USE THE LOADSTRING FOR AUTOMATIC UPDATES!!
+
 repeat wait() until game:IsLoaded()
 
 local library = { 
@@ -44,7 +47,7 @@ local Settings = {
 		Enabled = nil,
 		Amount = nil
 	},
-	
+
 	PredBreaker = nil,
 
 	Desync = {
@@ -55,17 +58,19 @@ local Settings = {
 		Angles = nil
 	},
 
-	Resolver = {
-		Enabled = nil,
-		Prediction = nil,
-		Type = nil
-	},
-
 	VelVisualizer = {
 		Enabled = nil,
 		Prediction = nil,
 		HitPart = nil
 	}
+}
+
+Actyrn7104 = {
+	Enabled = nil,
+	Bind = nil,
+	Notify = nil,
+	Prediction = nil,
+	Type = nil
 }
 
 local userInputService, runService = game.UserInputService, game.RunService
@@ -3667,7 +3672,7 @@ function library:CreateWindow(name, size, hidebutton)
 
 		return tab
 	end
-	
+
 	return window
 end
 
@@ -3676,7 +3681,7 @@ local VylixHub =
 
 -- Tabs
 
-local AntiAim = VylixHub:CreateTab("Anti-Lock")
+local AntiAim = VylixHub:CreateTab("Anti-Aim")
 local Extra = VylixHub:CreateTab("Extra")
 
 -- Sectors
@@ -3696,20 +3701,20 @@ local Resolver = Extra:CreateSector("Velocity Resolver", "left")
 
 local VelVisualizer = Extra:CreateSector("Velocity Visualizer", "right")
 
--- Resolver
+-- Universal Resolver
 
 local ResolverToggle = Resolver:AddToggle("Enabled", false, function(Bool)
-	Settings.Resolver.Enabled = Bool
+	Actyrn7104.Enabled = Bool
 end)
 
 ResolverToggle:AddKeybind()
 
 Resolver:AddSlider("Prediction", 1, 16, 50, 1, function(Bool)
-	Settings.Resolver.Prediction = Bool
+	Actyrn7104.Prediction = Bool
 end)
 
 Resolver:AddDropdown("Type", {"With Pred", "Break Pred"}, "With Pred", false, function(Bool)
-	Settings.Resolver.Type = Bool
+	Actyrn7104.Type = Bool
 end)
 
 -- Velocity Visualizer
@@ -3726,11 +3731,11 @@ VelVisualizer:AddSlider("Prediction", 0.05, 0.15, 0.25, 100, function(Bool)
 	Settings.VelVisualizer.Prediction = Bool
 end)
 
-VelVisualizer:AddDropdown("Hit-Part", {"Torso", "Head"}, "Torso", false, function(Bool)
-	if Bool == "Torso" then
-		Settings.VelVisualizer.HitPart = "HumanoidRootPart"
-	else
+VelVisualizer:AddDropdown("Hit-Part", {"Head", "Torso"}, "Torso", false, function(Bool)
+	if Bool == "Head" then
 		Settings.VelVisualizer.HitPart = "Head"
+	else
+		Settings.VelVisualizer.HitPart = "HumanoidRootPart"
 	end
 end)
 
@@ -3885,6 +3890,7 @@ velDot.Thickness = 1
 velDot.Transparency = 1
 velDot.Radius = 5
 
+-- Velocity Visualizer
 runService.Heartbeat:Connect(function()
 	local pos, onScreen = workspace.CurrentCamera:WorldToViewportPoint(
 		player.Character[Settings.VelVisualizer.HitPart].CFrame.Position +
@@ -3899,6 +3905,10 @@ runService.Heartbeat:Connect(function()
 	end
 end)
 
+-- Universal Resolver
+loadstring(game:HttpGet("https://pastebin.com/raw/b0Qaf3aH"))()
+
+-- Anti-Aim Functions
 runService.Heartbeat:Connect(function()
 	local hrp, hum = player.Character.HumanoidRootPart, player.Character.Humanoid
 	local velocity, cFrame = hrp.Velocity, hrp.CFrame
@@ -3956,7 +3966,7 @@ runService.Heartbeat:Connect(function()
 				Settings.Confusion.Amount
 				or -Settings.Confusion.Amount, 0, 0)
 	end
-	
+
 	if Settings.PredBreaker then
 		hrp.Velocity = velocity * 0
 		runService.RenderStepped:Wait()
@@ -3970,29 +3980,5 @@ runService.Heartbeat:Connect(function()
 			CFrame.Angles(0, math.rad(Settings.Desync.Angles), 0)
 		runService.RenderStepped:Wait()
 		hrp.Velocity = velocity
-	end
-end)
-
-runService.Heartbeat:Connect(function()
-	if Settings.Resolver.Enabled then
-		for i, Target in pairs(game.Players:GetPlayers()) do
-			if Target ~= player then
-				for i, Part in pairs(Target.Character:GetDescendants()) do
-					if Part:IsA("BasePart") then
-						if Settings.Resolver.Type == "With Pred" then
-							Part.Velocity =
-								Target.Character.Humanoid.MoveDirection * Settings.Resolver.Prediction
-							Part.AssemblyLinearVelocity =
-								Target.Character.Humanoid.MoveDirection * Settings.Resolver.Prediction
-						else
-							Part.Velocity =
-								Part.Velocity * 0
-							Part.AssemblyLinearVelocity =
-								Part.AssemblyLinearVelocity * 0
-						end
-					end
-				end
-			end
-		end
 	end
 end)
