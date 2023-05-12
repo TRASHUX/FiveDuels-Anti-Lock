@@ -3723,7 +3723,7 @@ local VelVisualizerToggle = VelVisualizer:AddToggle("Enabled", false, function(B
 	Settings.VelVisualizer.Enabled = Bool
 end)
 
-VelVisualizerToggle:AddColorpicker(Color3.fromRGB(100, 180, 70), function(Bool)
+VelVisualizerToggle:AddColorpicker(Color3.fromRGB(0,100,255), function(Bool)
 	velDot.Color = Bool
 end)
 
