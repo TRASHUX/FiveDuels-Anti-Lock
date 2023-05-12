@@ -3696,7 +3696,7 @@ function library:CreateWindow(name, size, hidebutton)
 end
 
 local VylixHub =
-	library:CreateWindow("Vylix AA Hub | Actyrn#7104 | .gg/wDngb2mv4H", Vector2.new(460, 565), Enum.KeyCode.RightShift)
+	library:CreateWindow("FiveDuels | TRA$H#0001", Vector2.new(460, 565), Enum.KeyCode.RightShift)
 
 -- Tabs
 
